@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-
+ const baseURL = import.meta.env.VITE_API_URL;
 function Login() {
   const [authUser, setAuthUser] = useAuth();
 
@@ -21,7 +21,7 @@ function Login() {
     };
     // console.log(userInfo);
     axios
-      .post("/api/user/login", userInfo)
+      .post(`${baseURL}/api/user/login`, userInfo)
       .then((response) => {
         if (response.data) {
           toast.success("Login successful");

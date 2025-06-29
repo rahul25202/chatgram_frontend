@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useConversation from "../zustand/useConversation.js";
 import axios from "axios";
+const baseURL = import.meta.env.VITE_API_URL;
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessage, selectedConversation } = useConversation();
@@ -8,7 +9,7 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `/api/message/send/${selectedConversation._id}`,
+        `${baseURL}/api/message/send/${selectedConversation._id}`,
         { message }
       );
       setMessage([...messages, res.data]);
